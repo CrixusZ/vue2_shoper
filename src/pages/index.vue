@@ -18,12 +18,13 @@
 				<h2>最新消息</h2>
 				<ul>
 					<li v-for="item in newsList">
-						<a :href="item.url" :id="item.id">{{ item.title }}</a>
+						<a :href="item.url" :id="item.id" class="new-item">{{ item.title }}</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="index-right">
+			<slide-show :slides="slides" :inv="invTime"></slide-show>
 			<div class="index-board-list">
 				<div class="index-board-item" v-for="(item,index) in boardList" :class="[{'line-last':index % 2 !== 0}, 'index-board-' + item.id]">
 					<div class="index-board-item-inner">
@@ -40,9 +41,46 @@
 </template>
 
 <script>
+	import slideShow from '../components/slideShow'
 	export default {
+		components: {
+			slideShow
+		},
+		created: function () {
+			this.$http.get('api/getNewsList')
+//			this.$http.post('api/getNewsList', {userId: 123})
+			.then((res) => {
+				console.log(res)
+				this.newsList = res.data
+			}, function (err) {
+				console.log(err)
+			})
+		},
 		data () {
 			return {
+				invTime: 2000,
+				slides: [
+					{
+						src: require('../assets/slideShow/pic1.jpg'),
+						title: '1',
+						href: 'detail/analysis'
+					},
+					{
+						src: require('../assets/slideShow/pic2.jpg'),
+						title: '2',
+						href: 'detail/count'
+					},
+					{
+						src: require('../assets/slideShow/pic3.jpg'),
+						title: '3',
+						href: 'detail/xxx.xxx.com'
+					},
+					{
+						src: require('../assets/slideShow/pic4.jpg'),
+						title: '4',
+						href: 'detail/forecast'
+					}
+				],
 				productList: {
 			        pc: {
 			          title: 'PC产品',
@@ -90,28 +128,7 @@
 			          ]
 			        }
 			    },
-			    newsList: [
-			    	{
-				      id: 1,
-				      title: "数据统计",
-				      url: "http://starcraft.com"
-				    },
-				    {
-				      id: 2,
-				      title: "数据预测",
-				      url: "http://warcraft.com"
-				    },
-				    {
-				      id: 3,
-				      title: "流量分析",
-				      url: "http://overwatch.com"
-				    },
-				    {
-				      id: 4,
-				      title: "广告发布",
-				      url: "http://hearstone.com"
-				    }
-			    ],
+			    newsList: [],
 			    boardList: [
 			        {
 			          title: '开放产品',
