@@ -2,6 +2,7 @@ import Vue from 'vue'
 //import App from './App'
 import Layout from './components/layout'
 import IndexPage from './pages/index'
+import DetailPage from './pages/detail'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
@@ -30,6 +31,10 @@ let router = new VueRouter({
 		{
 			path: '/',
 			component: IndexPage
+		},
+		{
+			path: '/detail',
+			component: DetailPage
 		}
 	]
 })
