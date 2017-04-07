@@ -1,11 +1,20 @@
 <template>
 	<div>
-		<div class="dialog-wrap" v-if="isShow">
+		<!--<div class="dialog-wrap" v-if="isShow">
 			<div class="dialog-cover" @click="close"></div>
 			<div class="dialog-content">
 				<p class="dialog-close" @click="close">x</p>
 				<slot>empty</slot>
 			</div>
+		</div>-->
+		<div class="dialog-wrap">
+			<div class="dialog-cover" v-if="isShow" @click="close"></div>
+			<transition name="drop">
+				<div class="dialog-content" v-if="isShow">
+					<p class="dialog-close" @click="close">x</p>
+					<slot>empty</slot>
+				</div>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -75,10 +84,10 @@
 	}
 	
 	.drop-enter-active {
-	  transition: all .5s ease;
+	  transition: all .8s ease;
 	}
 	.drop-leave-active {
-	  transition: all .3s ease;
+	  transition: all .5s ease;
 	}
 	.drop-enter {
 	  transform: translateY(-500px);

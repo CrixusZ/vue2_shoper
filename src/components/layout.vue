@@ -5,10 +5,14 @@
 				<img src="../assets/logo.png" />
 				<div class="head-nav">
 					<ul class="nav-list">
-						<li @click="logClick">登录</li>
-						<li class="nav-pile">|</li>
-						<li @click="regClick">注册</li>
-						<li class="nav-pile">|</li>
+						<li>{{ username }}</li>
+						<li v-if="username!== ''" class="nav-pile">|</li>
+						<li v-if="username!== ''" @click='signOut'>退出</li>
+						<li v-if="username!== ''" class="nav-pile">|</li>
+						<li v-if="username=== ''" @click="logClick">登录</li>
+						<li v-if="username=== ''" class="nav-pile">|</li>
+						<li v-if="username=== ''" @click="regClick">注册</li>
+						<li v-if="username=== ''" class="nav-pile">|</li>
 						<li @click="aboutClick">关于</li>
 					</ul>
 				</div>
@@ -29,7 +33,7 @@
 				反映中国专车市场发展情况，为政府、企事业单位和社会各界提供决策依据。 </p>
 		</my-dialog>
 		<my-dialog :isShow="isShowLogDialog" @on-close ='closeDialog("isShowLogDialog")'>
-			<logform></logform>
+			<logform @has-log="successLog"></logform>
 		</my-dialog>
 		<my-dialog :isShow="isShowRegDialog" @on-close ='closeDialog("isShowRegDialog")'>
 			<regform></regform>
@@ -51,7 +55,8 @@
 			return {
 				isShowAboutDialog: false,
 				isShowLogDialog: false,
-				isShowRegDialog: false
+				isShowRegDialog: false,
+				username: ''
 			}
 		},
 		methods: {
@@ -66,6 +71,14 @@
 			},
 			closeDialog (attr) {
 				this[attr] = false
+			},
+			successLog (data) {
+				console.log(data)
+				this.username = data.username
+				this.closeDialog ('isShowLogDialog')
+			},
+			signOut () {
+				this.username = ''
 			}
 		}
 	}
