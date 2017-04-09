@@ -6,6 +6,10 @@ import DetailPage from './pages/detail'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
+import Analysis from './pages/detail/analysis'
+import Count from './pages/detail/count'
+import Forecast from './pages/detail/forecast'
+import Publish from './pages/detail/publish'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -34,7 +38,26 @@ let router = new VueRouter({
 		},
 		{
 			path: '/detail',
-			component: DetailPage
+			component: DetailPage,
+			redirect: '/detail/count',
+			children: [
+				{
+					path: 'analysis',
+					component: Analysis
+				},
+				{
+					path: 'count',
+					component: Count
+				},
+				{
+					path: 'forecast',
+					component: Forecast
+				},
+				{
+					path: 'publish',
+					component: Publish
+				}
+			]
 		}
 	]
 })

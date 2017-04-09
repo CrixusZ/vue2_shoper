@@ -73,7 +73,7 @@
 					{
 						src: require('../assets/slideShow/pic3.jpg'),
 						title: '3',
-						href: 'detail/xxx.xxx.com'
+						href: 'detail/publish'
 					},
 					{
 						src: require('../assets/slideShow/pic4.jpg'),
