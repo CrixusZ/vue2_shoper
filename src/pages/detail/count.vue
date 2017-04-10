@@ -11,7 +11,7 @@
 					产品类型：
 				</div>
 				<div class="sales-board-line-right">
-
+					<v-choose :selections="buyTypes" @on-change="onParamChange"></v-choose>
 				</div>
 			</div>
 			<div class="sales-board-line">
@@ -27,8 +27,7 @@
 					有效时间：
 				</div>
 				<div class="sales-board-line-right">
-					<!--<v-selection :selections="times" @on-change="onParamChange"></v-selection>-->
-					半年
+					<v-choose :selections="times" @on-change="onParamChange"></v-choose>
 				</div>
 			</div>
 			<div class="sales-board-line">
@@ -247,6 +246,7 @@
 
 <script>
 	import VSelection from '../../components/base-component/selection'
+	import VChoose from '../../components/base-component/choose'
 	export default {
 		data() {
 			return {
@@ -287,7 +287,21 @@
 						label: '两年',
 						value: 2
 					}
-				]
+				],
+				buyTypes: [
+			        {
+			          label: '普通版',
+			          value: 0
+			        },
+			        {
+			          label: '豪华版',
+			          value: 1
+			        },
+			        {
+			          label: '专享版',
+			          value: 2
+			        }
+		      	]
 			}
 		},
 		methods: {
@@ -296,7 +310,7 @@
 			},
 		},
 		components: {
-			VSelection
+			VSelection, VChoose
 		}
 	}
 </script>

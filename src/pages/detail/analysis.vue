@@ -14,7 +14,7 @@
               		购买数量：
               	</div>
               	<div class="sales-board-line-right">
-                	<!--<v-counter @on-change="onParamChange('buyNum', $event)"></v-counter>-->
+                	<v-counter @on-change="onParamChange('buyNum', $event)"></v-counter>
           		</div>
 			</div>
 			<div class="sales-board-line">
@@ -30,9 +30,9 @@
                   	有效时间：
               	</div>
               	<div class="sales-board-line-right">
-	                  <!--<v-chooser
+	                  <v-choose
 	                  :selections="periodList"
-	                  @on-change="onParamChange('period', $event)"></v-chooser>-->
+	                  @on-change="onParamChange('period', $event)"></v-choose>
               	</div>
           	</div>
           	<div class="sales-board-line">
@@ -40,9 +40,9 @@
                   	产品版本：
               	</div>
               	<div class="sales-board-line-right">
-                  	<!--<v-mul-chooser
+                  	<v-choose
 	                  :selections="versionList"
-	                  @on-change="onParamChange('versions', $event)"></v-mul-chooser>-->
+	                  @on-change="onParamChange('versions', $event)"></v-choose>
               	</div>
           	</div>
           	<div class="sales-board-line">
@@ -90,6 +90,8 @@
 
 <script>
 	import VSelection from '../../components/base-component/selection'
+	import VChoose from '../../components/base-component/choose'
+	import VCounter from '../../components/base-component/counter'
 	export default {
 		data () {
 			return {
@@ -107,13 +109,41 @@
 			          value: 2
 			        }
 		      	],
+		      	versionList: [
+			        {
+			          label: '客户版',
+			          value: 0
+			        },
+			        {
+			          label: '代理商版',
+			          value: 1
+			        },
+			        {
+			          label: '专家版',
+			          value: 2
+			        }
+		      	],
+		      	periodList: [
+			        {
+			          label: '半年',
+			          value: 0
+			        },
+			        {
+			          label: '一年',
+			          value: 1
+			        },
+			        {
+			          label: '三年',
+			          value: 2
+			        }
+		      	]
 			}
 		},
 		props: {
 			
 		},
 		components: {
-			VSelection
+			VSelection,VChoose,VCounter
 		},
 		methods: {
 			onParamChange () {
