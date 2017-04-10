@@ -56,7 +56,7 @@
           	<div class="sales-board-line">
               	<div class="sales-board-line-left">&nbsp;</div>
               	<div class="sales-board-line-right">
-                  	<div class="button" @click="showPayDialog">
+                  	<div class="button">
                     	立即购买
                   	</div>
               	</div>
@@ -92,9 +92,15 @@
 	import VSelection from '../../components/base-component/selection'
 	import VChoose from '../../components/base-component/choose'
 	import VCounter from '../../components/base-component/counter'
+	import VMoreChoose from '../../components/base-component/more-choose'
 	export default {
 		data () {
 			return {
+				buyNum: 0,
+		      	buyType: {},
+		      	versions: [],
+		      	period: {},
+		      	price: 0,
 				buyTypes: [
 			        {
 			          label: '入门版',
