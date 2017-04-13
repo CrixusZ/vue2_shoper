@@ -10,24 +10,26 @@ import Analysis from './pages/detail/analysis'
 import Count from './pages/detail/count'
 import Forecast from './pages/detail/forecast'
 import Publish from './pages/detail/publish'
+import OrderListPage from './pages/orderList'
 
+import store from './store/index'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(Vuex)
-let store = new Vuex.Store({
-	state: {
-		
-	},
-	getters: {
-		
-	},
-	actions: {
-		
-	},
-	mutations: {
-		
-	}
-})
+//let store = new Vuex.Store({
+//	state: {
+//		
+//	},
+//	getters: {
+//		
+//	},
+//	actions: {
+//		
+//	},
+//	mutations: {
+//		
+//	}
+//})
 
 let router = new VueRouter({
 	mode: 'history',
@@ -35,6 +37,10 @@ let router = new VueRouter({
 		{
 			path: '/',
 			component: IndexPage
+		},
+		{
+			path: '/orderList',
+			component: OrderListPage
 		},
 		{
 			path: '/detail',
@@ -64,6 +70,7 @@ let router = new VueRouter({
 new Vue({
   	el: '#app',
   	router,
+//	store: Store,
 	store,
   	template: '<Layout/>',
   	components: { Layout }
